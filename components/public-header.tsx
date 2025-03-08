@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
@@ -24,16 +24,16 @@ const routes = [
   { name: "Contact", path: "/contact" },
 ]
 
-export default function PublicHeader() {
+export default function PublicHeader(): JSX.Element {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
   const [user, setUser] = React.useState(null)
   const [scrolled, setScrolled] = React.useState(false)
 
-  // Handle scroll effect
+  // Handle scroll effect with adjusted threshold
   React.useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
+      setScrolled(window.scrollY > 20)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -52,24 +52,26 @@ export default function PublicHeader() {
   }, [])
 
   return (
-    <motion.header
+    <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200",
-        scrolled ? "bg-background/95 shadow-sm" : "bg-background/80",
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        scrolled
+          ? "bg-background/85 backdrop-blur-md shadow-sm border-b border-border/40"
+          : "bg-background/50 backdrop-blur-sm"
       )}
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.3 }}
     >
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <motion.span
-            className="text-2xl font-bold text-primary"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            ResearchHub
-          </motion.span>
+          <Image
+            src="/uro logo.png"
+            alt="Enresearch Logo"
+            width={48}
+            height={48}
+            className="h-10 w-10"
+          />
+            <span className="text-xl font-bold text-primary transition-colors duration-150">
+            Enresearch
+            </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -82,9 +84,8 @@ export default function PublicHeader() {
                     className={cn(
                       navigationMenuTriggerStyle(),
                       pathname === route.path && "bg-accent text-accent-foreground font-medium",
-                      "transition-all duration-200 hover:bg-accent/80",
-                    )}
-                  >
+                      "transition-colors duration-150"
+                    )}>
                     {route.name}
                   </NavigationMenuLink>
                 </Link>
@@ -127,8 +128,8 @@ export default function PublicHeader() {
                     href={route.path}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-lg font-medium transition-all duration-200 hover:text-primary hover:translate-x-1 p-2 rounded-md",
-                      pathname === route.path ? "text-primary bg-primary/5" : "text-foreground",
+                      "text-lg font-medium transition-colors duration-150 p-2 rounded-md",
+                      pathname === route.path ? "text-primary bg-primary/5" : "text-foreground hover:text-primary hover:bg-accent/50"
                     )}
                   >
                     {route.name}
@@ -159,44 +160,33 @@ export default function PublicHeader() {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="relative group"
-          >
+          <div className="relative group">
             <Button
               variant="ghost"
               size="sm"
               asChild
-              className="gap-2 hover:bg-accent/50 transition-all duration-200 rounded-full px-4"
+              className="gap-2 transition-colors duration-150 rounded-full px-4 hover:bg-accent/50"
             >
               <Link href="/signin">
                 <LogIn className="h-4 w-4" />
                 Sign In
               </Link>
             </Button>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          </div>
+          <Button
+            asChild
+            size="sm"
+            className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-150 rounded-full px-4"
           >
-            <Button
-              asChild
-              size="sm"
-              className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 rounded-full px-4 shadow-sm hover:shadow"
-            >
-              <Link href="/signup">
-                <UserPlus className="h-4 w-4" />
-                Sign Up
-              </Link>
-            </Button>
-          </motion.div>
+            <Link href="/signup">
+              <UserPlus className="h-4 w-4" />
+              Sign Up
+            </Link>
+          </Button>
           <ModeToggle />
         </div>
       </div>
-    </motion.header>
+    </header>
   )
 }
 

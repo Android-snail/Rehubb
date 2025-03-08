@@ -32,7 +32,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Research Hub</h4>
+            <h4 className="text-lg font-semibold">Enresearch</h4>
             <p className="text-muted-foreground">
               A modern platform dedicated to advancing research and knowledge sharing across disciplines.
             </p>
