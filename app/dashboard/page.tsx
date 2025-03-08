@@ -7,15 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { LineChart } from "@/components/charts/line-chart"
 import {
-  FileText,
-  Clock,
-  CheckCircle,
-  AlertTriangle,
-  ArrowRight,
-  Calendar,
-  Bell,
-  BookOpen,
-} from "lucide-react"
+  FileText,Clock,CheckCircle,AlertTriangle,ArrowRight,Calendar,Bell,BookOpen} from "lucide-react"
 import Link from "next/link"
 import { PROPOSAL_STATUS } from "@/lib/constants"
 import { getUserActivityData } from "@/lib/chart-utils"

@@ -55,18 +55,21 @@ export function DashboardSidebar({ className }: SidebarProps) {
     }
   }, [router, pathname])
 
-  const handleLogout = () => {
+  const handleLogoutConfirm = async () => {
+    try {
+      // Clear all localStorage data
+      localStorage.clear()
+      // Redirect to signin page
+      router.push('/signin')
+    } catch (error) {
+      console.error("Logout failed:", error)
+    } finally {
+      setShowLogoutDialog(false)
+    }
+  }
+
+  const handleLogoutClick = () => {
     setShowLogoutDialog(true)
-  }
-
-  const confirmLogout = () => {
-    localStorage.removeItem("user")
-    localStorage.removeItem("token")
-    router.push("/signin")
-  }
-
-  const cancelLogout = () => {
-    setShowLogoutDialog(false)
   }
 
   const navItems = [
@@ -74,11 +77,6 @@ export function DashboardSidebar({ className }: SidebarProps) {
       title: "Dashboard",
       href: "/dashboard",
       icon: LayoutDashboard,
-    },
-    {
-      title: "Studies Agenda",
-      href: "/dashboard/studies",
-      icon: Microscope,
     },
     {
       title: "Submit Proposal",
@@ -302,12 +300,13 @@ export function DashboardSidebar({ className }: SidebarProps) {
                     <motion.div variants={itemVariants} className="flex">
                       <Button
                         variant="ghost"
+                        aria-label="Logout from your account"
                         className={cn(
-                          "group flex h-10 w-full items-center justify-start rounded-md px-3 py-2 text-sm font-medium transition-all",
-                          "text-muted-foreground hover:text-foreground hover:bg-accent/50",
-                          "relative overflow-hidden",
+                          "group flex h-10 w-full items-center rounded-md px-3 py-2 text-sm font-medium transition-all",
+                          "text-destructive hover:text-destructive hover:bg-destructive/10",
+                          "relative overflow-hidden focus-visible:ring-destructive",
                         )}
-                        onClick={handleLogout}
+                        onClick={handleLogoutClick}
                       >
                         <div className={cn("flex items-center justify-center", isCollapsed ? "w-full" : "w-5 mr-3")}>
                           <LogOut className="h-5 w-5" />
@@ -321,7 +320,7 @@ export function DashboardSidebar({ className }: SidebarProps) {
                       </Button>
                     </motion.div>
                   </TooltipTrigger>
-                  {isCollapsed && <TooltipContent side="right">Logout</TooltipContent>}
+                  {isCollapsed && <TooltipContent side="right">Logout from your account</TooltipContent>}
                 </Tooltip>
               </TooltipProvider>
             </nav>
@@ -334,25 +333,36 @@ export function DashboardSidebar({ className }: SidebarProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="mt-auto border-t p-4"
+              className="mt-auto border-t bg-accent/5 p-4"
             >
               <div className="flex items-center gap-3">
-                <Avatar className="h-9 w-9 ring-2 ring-background">
+                <Avatar className="h-10 w-10 ring-2 ring-background">
                   <AvatarImage src={user.avatar || ""} alt={user.name} />
-                  <AvatarFallback className="bg-primary/10 text-primary font-medium">
+                  <AvatarFallback className="bg-primary/10 text-primary font-medium text-base">
                     {user.name?.charAt(0) || "U"}
                   </AvatarFallback>
                 </Avatar>
-                <motion.div variants={textVariants} className="flex flex-col">
-                  <span className="text-sm font-medium truncate max-w-[140px]">{user.name}</span>
-                  <span className="text-xs text-muted-foreground truncate max-w-[140px]">{user.email}</span>
+                <motion.div 
+                  variants={textVariants} 
+                  className="flex flex-col min-w-0"
+                >
+                  <span className="text-sm font-medium truncate max-w-[140px]">
+                    {user.name || "John Doe"}
+                  </span>
                 </motion.div>
               </div>
+             
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
-      <LogoutConfirmation isOpen={showLogoutDialog} onConfirm={confirmLogout} onCancel={cancelLogout} />
+      <LogoutConfirmation 
+        isOpen={showLogoutDialog} 
+        onConfirm={handleLogoutConfirm}
+        onCancel={() => setShowLogoutDialog(false)}
+        variant="sidebar"
+        className="w-full justify-start text-sm font-medium"
+      />
     </>
   )
 }
