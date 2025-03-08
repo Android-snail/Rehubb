@@ -101,11 +101,6 @@ export function DashboardSidebar({ className }: SidebarProps) {
       icon: BookOpen,
     },
     {
-      title: "Statistics",
-      href: "/dashboard/statistics",
-      icon: BarChart2,
-    },
-    {
       title: "Feed",
       href: "/dashboard/feed",
       icon: MessageSquare,

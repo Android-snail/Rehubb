@@ -524,14 +524,6 @@ export default function DashboardPage() {
             </div>
           </div>
         </CardContent>
-        <CardFooter>
-          <Button variant="outline" className="w-full" asChild>
-            <Link href="/dashboard/statistics">
-              <BarChart3 className="mr-2 h-4 w-4" />
-              View Detailed Statistics
-            </Link>
-          </Button>
-        </CardFooter>
       </Card>
     </div>
   )
