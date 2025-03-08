@@ -16,9 +16,47 @@ import {
 import { Button } from "@/components/ui/button"
 import { LogOut } from "lucide-react"
 
-export function LogoutConfirmation() {
+interface LogoutConfirmationProps {
+  isOpen: boolean
+  onConfirm: () => void
+  onCancel: () => void
+  variant?: "sidebar" | "header"
+}
+
+export function LogoutConfirmation({ isOpen, onConfirm, onCancel, variant = "header" }: LogoutConfirmationProps) {
   const [open, setOpen] = useState(false)
   const router = useRouter()
+
+  if (variant === "sidebar") {
+    return (
+      <>
+        <Button
+          variant="ghost"
+          className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
+          onClick={onCancel}
+        >
+          <LogOut className="mr-2 h-5 w-5" />
+          <span>Logout</span>
+        </Button>
+        <AlertDialog open={isOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to logout? Any unsaved changes will be lost.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={onCancel}>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={onConfirm} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                Logout
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </>
+    )
+  }
 
   const handleLogout = () => {
     // Here you would typically call your logout API
