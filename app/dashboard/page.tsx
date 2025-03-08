@@ -14,7 +14,6 @@ import {
   ArrowRight,
   Calendar,
   Bell,
-  BarChart3,
   BookOpen,
 } from "lucide-react"
 import Link from "next/link"
@@ -149,7 +148,7 @@ export default function DashboardPage() {
       case PROPOSAL_STATUS.APPROVED_FOR_REVIEW:
         return (
           <Badge
-            variant="success"
+            variant="default"
             className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300"
           >
             Approved for Review
@@ -164,7 +163,7 @@ export default function DashboardPage() {
       case PROPOSAL_STATUS.REVISION_REQUIRED:
         return (
           <Badge
-            variant="warning"
+            variant="outline"
             className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300"
           >
             Revision Required
@@ -177,7 +176,7 @@ export default function DashboardPage() {
       case PROPOSAL_STATUS.NTP_ISSUED:
         return (
           <Badge
-            variant="success"
+            variant="default"
             className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300"
           >
             NTP Issued
@@ -186,7 +185,7 @@ export default function DashboardPage() {
       case PROPOSAL_STATUS.CLEARANCE_REQUIRED:
         return (
           <Badge
-            variant="warning"
+            variant="outline"
             className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300"
           >
             Clearance Required
@@ -197,7 +196,7 @@ export default function DashboardPage() {
       case PROPOSAL_STATUS.COMPLETED:
         return (
           <Badge
-            variant="success"
+            variant="default"
             className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300"
           >
             Completed
@@ -261,7 +260,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">
-            Welcome back, {user.name}! Here's an overview of your research activities.
+            Welcome back, {user.name}! Here&ampos;s an overview of your research activities.
           </p>
         </div>
         <Button asChild>
