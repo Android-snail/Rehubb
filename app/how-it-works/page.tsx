@@ -42,10 +42,10 @@ export default function HowItWorksPage() {
       <div className="flex flex-col space-y-12">
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">How ResearchHub Works</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl">
-            Our platform connects researchers, students, and knowledge seekers to create a global research community
-          </p>
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">How Enresearch Works</h1>
+            <p className="text-xl text-muted-foreground max-w-3xl">
+            Our platform connects researchers across all PSU campuses and research clusters within the research community
+            </p>
         </div>
 
         {/* Steps Section */}
@@ -65,7 +65,7 @@ export default function HowItWorksPage() {
 
         {/* Video Section */}
         <div className="flex flex-col items-center space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight">See ResearchHub in Action</h2>
+          <h2 className="text-3xl font-bold tracking-tight">See Enresearch in Action</h2>
           <div className="w-full max-w-4xl aspect-video bg-muted rounded-lg overflow-hidden flex items-center justify-center">
             <Image
               src="/placeholder.svg?height=720&width=1280&text=Video+Placeholder"
@@ -86,8 +86,8 @@ export default function HowItWorksPage() {
                 <CardContent className="p-6">
                   <div className="flex flex-col space-y-4">
                     <p className="italic">
-                      "ResearchHub has transformed how I share and discover research. The platform's intuitive design
-                      and collaborative features have significantly increased the visibility of my work."
+                      &ldquo;Enresearch has transformed how I share and discover research. The platform&ampos;s intuitive design
+                      and collaborative features have significantly increased the visibility of my work.&rdquo;
                     </p>
                     <div className="flex items-center gap-4">
                       <Image
@@ -115,20 +115,20 @@ export default function HowItWorksPage() {
           <div className="grid gap-4 md:grid-cols-2">
             {[
               {
-                q: "Is ResearchHub free to use?",
-                a: "Yes, ResearchHub offers a free tier with access to most features. We also offer premium plans for researchers and institutions who need advanced features.",
+                q: "Is Enresearch free to use?",
+                a: "Yes, Enresearch offers a free tier with access to most features. We also offer premium plans for researchers and institutions who need advanced features.",
               },
               {
                 q: "How do I upload my research?",
-                a: "After creating an account, you can upload your research papers through your profile dashboard. We support various file formats including PDF, DOCX, and LaTeX.",
+                a: "After creating an account, you can upload your research papers through your profile dashboard. We support various file formats including PDF, DOCX etc.",
               },
               {
                 q: "Can I control who sees my research?",
                 a: "Absolutely. You have full control over the privacy settings of your uploads. You can make them public, restricted to certain groups, or completely private.",
               },
               {
-                q: "How does citation work on ResearchHub?",
-                a: "ResearchHub automatically generates citation information in various formats (APA, MLA, Chicago, etc.) for all research papers on the platform.",
+                q: "How does citation work on Enresearch?",
+                a: "Enresearch automatically generates citation information in various formats (APA, MLA, Chicago, etc.) for all research papers on the platform.",
               },
             ].map((faq, i) => (
               <Card key={i}>

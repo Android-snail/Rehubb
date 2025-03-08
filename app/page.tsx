@@ -16,11 +16,10 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Discover and Share Research That Matters
+                  Enhancing Research Oversight
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Connect with researchers, explore groundbreaking studies, and contribute to the global knowledge
-                    ecosystem.
+                  A Monitoring and Analytics System for Palawan State University Research Office
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -121,23 +120,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="border-t py-6 md:py-0">
-          <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-            <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-              © {new Date().getFullYear()} ResearchHub. All rights reserved.
-            </p>
-            <div className="flex gap-4">
-              <Link href="/terms" className="text-sm text-muted-foreground hover:underline">
-                Terms
-              </Link>
-              <Link href="/privacy" className="text-sm text-muted-foreground hover:underline">
-                Privacy
-              </Link>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   )
