@@ -10,6 +10,9 @@ module.exports = {
   ],
   future: {
     hoverOnlyWhenSupported: true,
+    respectDefaultRingColorOpacity: true,
+    disableColorOpacityUtilitiesByDefault: true,
+    serverActions: true,
   },
   theme: {
     container: {

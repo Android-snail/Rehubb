@@ -1,5 +1,19 @@
 const nextConfig = {
   reactStrictMode: true,
+  // New Next.js 15 features
+  logging: {
+    fetches: {
+      fullUrl: true
+    }
+  },
+  // Enable new App Router features
+  experimental: {
+    typedRoutes: true,
+    serverActions: {
+      bodySizeLimit: '2mb'
+    },
+    webpackBuildWorker: true
+  },
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
@@ -42,13 +56,6 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    domains: [
-      'localhost',
-      '127.0.0.1',
-      'placeholder.svg',
-      'images.unsplash.com',
-      'source.unsplash.com'
-    ],
     formats: ['image/avif', 'image/webp'],
   },
   eslint: {
@@ -56,7 +63,6 @@ const nextConfig = {
     dirs: ['app', 'components', 'lib', 'pages'],
     ignoreDuringBuilds: false,
   },
-  // Modern optimizations for Vercel deployment
   poweredByHeader: false,
   compress: true,
 }
