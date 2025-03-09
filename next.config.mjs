@@ -56,13 +56,6 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    domains: [
-      'localhost',
-      '127.0.0.1',
-      'placeholder.svg',
-      'images.unsplash.com',
-      'source.unsplash.com'
-    ],
     formats: ['image/avif', 'image/webp'],
   },
   eslint: {
